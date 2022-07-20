@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classBind from 'classnames/bind';
 import { connect } from 'react-redux';
+import List from './components/List'
 import styles from './style.less';
 
 const cx = classBind.bind(styles);
 
-const Home = (props) => {
-    const { count } = props;
-    console.log(count);
+const Home = ({ message }) => {
+    const [count, setCount] = useState(1)
     return (
-        <div className={cx('home')}>
-            Hello111 World
+        <div className={cx('home')} onClick={() => setCount(count + 1)}>
+            Hello World - {message}
+            {count}
+            <List />
         </div>
     );
 };
 
 
-const mapStateToProps = ({ example }) => ({
-    ...example,
+const mapStateToProps = ({ home }) => ({
+    ...home,
 });
 const mapDispatchToProps = (dispatch) => {
-    return { ...dispatch.example };
+    return { ...dispatch.home };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

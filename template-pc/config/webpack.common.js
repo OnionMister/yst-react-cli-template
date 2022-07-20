@@ -1,6 +1,7 @@
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATH = require('./PATH');
@@ -34,7 +35,7 @@ module.exports = {
             {
                 test: /\.(js|jsx|ts|tsx)$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
+                use: ['thread-loader', 'cache-loader', 'babel-loader'],
             },
             {
                 test: /\.css$/,
@@ -81,6 +82,11 @@ module.exports = {
         modules: [
             PATH.SRC,
             path.resolve(PATH.ROOT, 'node_modules'),
+        ],
+    },
+    optimization: {
+        minimizer: [
+          new CssMinimizerPlugin(),
         ],
     },
 };

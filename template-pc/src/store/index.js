@@ -1,13 +1,13 @@
 import { init } from '@rematch/core';
 import createLoadingPlugin from '@rematch/loading';
-import example from './moduleA';
+import home from './home';
 
 
 const loading = createLoadingPlugin({});
 
 const store = init({
     models: {
-        example,
+        home,
     },
     plugins: [loading],
 });

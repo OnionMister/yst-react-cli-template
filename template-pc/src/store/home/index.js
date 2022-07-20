@@ -2,7 +2,7 @@
 
 export default {
     state: {
-        userInfo: {},
+        message: '我是rematch数据'
     },
 
     reducers: {
