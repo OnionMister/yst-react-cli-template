@@ -3,7 +3,23 @@ const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const threadLoader = require('thread-loader');
 
+threadLoader.warmup(
+    {
+        workerParallelJobs: 50,
+        workerNodeArgs: ['--max-old-space-size=1024'],
+        poolRespawn: false,
+        poolTimeout: 2000,
+        poolParallelJobs: 50,
+        name: 'my-pool',
+    },
+  [
+    'babel-loader',
+    'less-loader'
+  ]
+);
 const PATH = require('./PATH');
 
 const isDev = process.env.NODE_ENV !== 'production';
@@ -29,13 +45,19 @@ module.exports = {
             inject: true,
             chunksSortMode: 'none',
         }),
-    ],
+        isDev && new ReactRefreshWebpackPlugin(),
+    ].filter(Boolean),
     module: {
         rules: [
             {
                 test: /\.(js|jsx|ts|tsx)$/,
                 exclude: /node_modules/,
-                use: ['thread-loader', 'cache-loader', 'babel-loader'],
+                use: ['cache-loader', {
+                    loader: 'babel-loader',
+                    options: {
+                        plugins: isDev ? [require.resolve('react-refresh/babel')] : []
+                    }
+                }],
             },
             {
                 test: /\.css$/,
