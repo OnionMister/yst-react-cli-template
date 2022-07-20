@@ -1,3 +1,7 @@
+/**
+ * @description 接口封装
+ */
+
 import fetch from 'isomorphic-fetch';
 import fetchJsonp from 'fetch-jsonp';
 import queryString from 'qs';

@@ -8,6 +8,7 @@ import zhCN from 'antd/es/locale-provider/zh_CN';
 import Layout from 'Layout';
 import store from 'store';
 import 'assets/less/reset.less';
+import 'assets/less/share.less';
 
 
 // 生产环境可能是以子目录形式提供的服务,所以这里需要配置 basename

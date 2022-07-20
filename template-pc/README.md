@@ -17,8 +17,8 @@
       }
     }`
 
-## 开启MOCK接口
-修改根目录 customConfig.js 文件内的 apiMocker 注释取消，即可开启MOCK接口。（注意：修改配置文件后需重启项目`npm start`）
+## 开启/关闭MOCK接口
+根目录 customConfig.js 文件内的 apiMocker 注释/取消注释，即MOCK接口的关闭/开启。（注意：修改配置文件后需重启项目`npm start`）
 mocker-api文档：https://www.npmjs.com/package/mocker-api
 
     `setupMiddlewares(middlewares, devServer) {

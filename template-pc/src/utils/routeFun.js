@@ -1,3 +1,6 @@
+/**
+ * @description 路由相关方法封装
+ */
 import Loadable from 'react-loadable';
 import Loading from 'components/Loading';
 
