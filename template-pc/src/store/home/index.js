@@ -1,3 +1,7 @@
+/**
+ * @Description: Home组件
+ */
+import { GET, POST } from 'utils';
 
 
 export default {
@@ -12,6 +16,9 @@ export default {
     },
 
     effects: {
-        // 异步action
+        async getCourseList(payload) {
+            const res = await GET('/api/course/list', { ...payload });
+            return res;
+        }
     },
 };

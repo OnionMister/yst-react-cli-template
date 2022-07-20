@@ -1,6 +1,7 @@
 //  自定义项目配置
 const path = require('path');
 const apiMocker = require('mocker-api');
+const mockerFile = ['./mock/index.js'];
 
 module.exports = {
     opsConfig: {
@@ -20,7 +21,7 @@ module.exports = {
                 if (!devServer) {
                     throw new Error('webpack-dev-server is not defined');
                 }
-                // apiMocker(app, path.join(__dirname, './mock/index.js'));
+                apiMocker(devServer.app, mockerFile);
                 return middlewares;
             },
             proxy: {

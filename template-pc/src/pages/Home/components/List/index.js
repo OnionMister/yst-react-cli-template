@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const List = ({ message }) => {
+const List = ({ courseList }) => {
     return (
         <div>
-            我是组件List1
+            <h2>我是组件List</h2>
+            {courseList.map(({ courseId, courseName }) => (
+                <p key={courseId}>{`${courseId} -- ${courseName}`}</p>
+            ))}
         </div>
     );
 };
