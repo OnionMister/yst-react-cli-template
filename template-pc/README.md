@@ -30,9 +30,9 @@ mocker-api文档：https://www.npmjs.com/package/mocker-api
     }`
 
  ## MOCK接口
- 以 /api/task-center/my-products 接口为例，在对应MOCK文件中如下配置即可：
+ 以 /api/course/list 接口为例，在对应MOCK文件中如下配置即可：
     
-    `'#GET /api/task-center/my-products': {
+    `'#GET /api/course/list': {
       data: ...,
       message: '',
       currentTime: 1559186492460,
