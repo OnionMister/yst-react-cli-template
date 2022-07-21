@@ -1,9 +1,12 @@
 /**
  * @description eslintV8对vscode存在兼容问题
- * @description eslint配置
+ * @description eslint配置，根据情况选择配置
  * npm install eslint -D
- * npx eslint --init 根据情况选择配置
+ * npx eslint --init
+ * @description 安装react相关依赖
  * npm i eslint-config-airbnb-base babel-eslint eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks -D
+ * @description 安装prettier，防止prettier-vscode和eslint冲突
+ * npm i eslint-config-prettier eslint-plugin-prettier -D
  */
 
 module.exports = {
