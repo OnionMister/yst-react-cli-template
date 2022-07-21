@@ -1,3 +1,11 @@
+/**
+ * @description eslintV8对vscode存在兼容问题
+ * @description eslint配置
+ * npm install eslint -D
+ * npx eslint --init 根据情况选择配置
+ * npm i eslint-config-airbnb-base babel-eslint eslint-plugin-import eslint-plugin-react eslint-plugin-react-hooks -D
+ */
+
 module.exports = {
     env: {
         browser: true,
