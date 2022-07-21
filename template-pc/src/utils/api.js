@@ -83,7 +83,6 @@ async function fetchWithStatusByJsonp(url, options) {
     }
 }
 
-
 function genUrl(url, params) {
     let paramStr = queryString.stringify(params);
     if (paramStr.length > 0) {
@@ -105,7 +104,7 @@ export function GET(url, params, options) {
     });
 }
 
-export function JSONP(url, params = {}, options) {
+export function JSONP(url, params = {}, options = {}) {
     const keys = Object.prototype.toString.call(params) === '[object Object]' && Object.keys(params);
     if (keys.length > 0) {
         if (url.indexOf('?') === -1) {

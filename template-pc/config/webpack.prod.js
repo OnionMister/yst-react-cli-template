@@ -41,7 +41,7 @@ module.exports = merge(common, {
                 },
             },
         },
-        chunkIds: 'named'
+        chunkIds: 'named',
     },
     plugins: [
         new CleanWebpackPlugin(),

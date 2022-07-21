@@ -1,12 +1,11 @@
 /**
  * @Description: Home组件
  */
-import { GET, POST } from 'utils';
-
+import { GET } from 'utils';
 
 export default {
     state: {
-        message: '我是rematch数据'
+        message: '我是rematch数据',
     },
 
     reducers: {
@@ -19,6 +18,6 @@ export default {
         async getCourseList(payload) {
             const res = await GET('/api/course/list', { ...payload });
             return res;
-        }
+        },
     },
 };

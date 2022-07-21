@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import classBind from 'classnames/bind';
 import { connect } from 'react-redux';
-import List from './components/List'
+import List from './components/List';
 import styles from './style.less';
-import { GET } from 'utils'
 
 const cx = classBind.bind(styles);
 
@@ -16,14 +15,16 @@ const Home = ({ message, getCourseList }) => {
         });
     }, []);
     return (
-        <div className={cx('home')} onClick={() => setCount(count + 1)}>
+        <div
+            className={cx('home')}
+            onClick={() => setCount(count + 1)}
+        >
             Hello World - {message}
             {count}
             <List courseList={courseList}/>
         </div>
     );
 };
-
 
 const mapStateToProps = ({ home }) => ({
     ...home,

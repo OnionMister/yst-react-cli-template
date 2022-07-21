@@ -1,6 +1,5 @@
 import { loadableLazy } from 'utils';
 
-
 export default [
     {
         path: '/home',
@@ -17,5 +16,5 @@ export default [
             layout: 'other',
         },
         element: loadableLazy(() => import('pages/Home')),
-    }
+    },
 ];

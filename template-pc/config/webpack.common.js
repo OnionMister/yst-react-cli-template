@@ -1,7 +1,7 @@
 const path = require('path');
 const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const threadLoader = require('thread-loader');
@@ -15,10 +15,10 @@ threadLoader.warmup(
         poolParallelJobs: 50,
         name: 'my-pool',
     },
-  [
-    'babel-loader',
-    'less-loader'
-  ]
+    [
+        'babel-loader',
+        'less-loader',
+    ],
 );
 const PATH = require('./PATH');
 
@@ -55,8 +55,8 @@ module.exports = {
                 use: ['cache-loader', {
                     loader: 'babel-loader',
                     options: {
-                        plugins: isDev ? [require.resolve('react-refresh/babel')] : []
-                    }
+                        plugins: isDev ? [require.resolve('react-refresh/babel')] : [],
+                    },
                 }],
             },
             {
@@ -108,7 +108,7 @@ module.exports = {
     },
     optimization: {
         minimizer: [
-          new CssMinimizerPlugin(),
+            new CssMinimizerPlugin(),
         ],
     },
 };
