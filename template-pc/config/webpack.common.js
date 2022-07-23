@@ -64,7 +64,7 @@ module.exports = {
                 sideEffects: true,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
+                    { loader: 'css-loader', options: { importLoaders: 1 } }, 'postcss-loader',
                 ],
             },
             {
@@ -72,10 +72,8 @@ module.exports = {
                 sideEffects: true,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    {
-                        loader: 'less-loader',
-                    },
+                    { loader: 'css-loader', options: { importLoaders: 2 } }, 'postcss-loader',
+                    'less-loader',
                 ],
             },
             {

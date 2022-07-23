@@ -19,8 +19,8 @@ const Home = ({ message, getCourseList }) => {
             className={cx('home')}
             onClick={() => setCount(count + 1)}
         >
-            Hello World - {message}
-            {count}
+            <div>Hello World - {message}</div>
+            <div>我是useState数据 - {count}</div>
             <List courseList={courseList}/>
         </div>
     );
