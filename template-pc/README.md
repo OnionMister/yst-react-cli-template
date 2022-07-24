@@ -29,8 +29,8 @@ mocker-api文档：https://www.npmjs.com/package/mocker-api
       return middlewares;
     }`
 
- ## MOCK接口
- 以 /api/course/list 接口为例，在对应MOCK文件中如下配置即可：
+## MOCK接口
+以 /api/course/list 接口为例，在对应MOCK文件中如下配置即可：
     
     `'#GET /api/course/list': {
       data: ...,
@@ -38,63 +38,65 @@ mocker-api文档：https://www.npmjs.com/package/mocker-api
       currentTime: 1559186492460,
       status: 0,
     },`
+
+## CommitLint规范
+  - feat：新功能
+  - fix：修补 BUG
+  - docs：修改文档，比如 README, CHANGELOG, CONTRIBUTE 等等
+  - style：不改变代码逻辑 (仅仅修改了空格、格式缩进、逗号等等)
+  - refactor：重构（既不修复错误也不添加功能）
+  - perf：优化相关，比如提升性能、体验
+  - test：增加测试，包括单元测试、集成测试等
+  - build：构建系统或外部依赖项的更改
+  - ci：自动化流程配置或脚本修改
+  - chore：非 src 和 test 的修改，发布版本等
+  - revert：恢复先前的提交
     
 
 ## 目录说明
-
-    ├── babel.config.js // babel 配置
-    ├── config // webpack 配置
-    │   ├── PATH.js
-    │   ├── webpack.common.js
-    │   ├── webpack.dev.js
-    │   └── webpack.prod.js
-    ├── public // webpack 配置
-    │   ├── index.html
-    │   └── 其他不需要打包的静态资源
-    ├── jsconfig.json // vscode 配置
-    ├── mock // 模拟数据
-    │   └── index.js
-    ├── package-lock.json
-    ├── package.json
-    ├── postcss.config.js
-    ├── README.md
-    └── src
-        ├── app.js
-        ├── assets // 公共静态资源
-        │   ├── js
-        │   ├── scss
-        │   └── images
-        
-        ├── components // 组件目录
-        │   ├── Nav
-        │   │   ├── img // 组件相关图片
-        │   │   │   └── nav.jpg
-        │   │   ├── index.js // 组件代码
-        │   │   └── style.scss // 组件相关样式
-        ├── store // 数据模型
-        │   ├── example
-        │   │   └── index.js // 数据
-        |   └── index.js
-        ├── layout // 布局模板
-        │   ├── Default
-        │   │   └── index.js // 数据
-        |   └── index.js
-        ├── services // 接口请求
-        │   ├── example
-        │   │   └── index.js // 数据
-        |   └── index.js
-        ├── index.js // 入口文件
-        ├── pages // 页面级组件
-        │   ├── another-one
-        │   │   ├── index.js
-        │   │   └── style.scss
-        │   └── home-page
-        │       ├── img
-        │       │   └── b.jpg
-        │       ├── index.js
-        │       └── style.scss
-        ├── routes // 路由
-            ├── home
-            │   └── index.js 
-            └── index.js
-
+├
+├─customConfig.js // 如要修改webpack配置建议修改这里
+├─src
+|  ├─app.js
+|  ├─index.js // 入口
+|  ├─utils // 工具库
+|  |   ├─api.js // 接口封装
+|  |   ├─constants.js // 常量
+|  |   ├─index.js // 工具统一出口
+|  |   ├─routeFun.js // 路由相关方法
+|  |   └utils.js // 公用方法
+|  ├─store // 状态数据存储
+|  |   ├─index.js // 统一出口
+|  |   ├─home // 按模块划分存储
+|  |   |  └index.js
+|  ├─routes // 路由
+|  |   ├─index.js
+|  |   ├─home // 按模块划分存储
+|  |   |  └index.js
+|  ├─pages // 页面
+|  |   ├─Home
+|  |   |  ├─index.js
+|  |   |  ├─style.less
+|  |   |  ├─components // 该页面私有组件
+|  |   |  |     ├─List
+|  |   |  |     |  └index.js
+|  ├─components // 公用组件
+|  |     ├─Loading
+|  |     |    └index.jsx
+|  |     ├─Exception
+|  |     |     ├─index.js
+|  |     |     └style.less
+|  ├─assets // 静态资源包括less、img等等
+|  |   ├─less
+|  |   |  ├─reset.less
+|  |   |  └share.less
+|  ├─Layout // 布局模版
+|  |   └index.js
+├─public // html、图标
+|   ├─favicon.ico
+|   └index.html
+├─config // 配置
+|   ├─PATH.js
+|   ├─webpack.common.js
+|   ├─webpack.dev.js
+|   └webpack.prod.js
