@@ -39,7 +39,7 @@ module.exports = {
             chunkFilename: 'css/[name]-[contenthash].css',
         }),
         new HtmlWebpackPlugin({
-            filename: 'index.html',
+            filename: isDev ? 'index.html' : '../../../index.html', // 保证生产环境下index.html位于dist下
             template: 'public/index.html',
             title: 'pc端',
             inject: 'body', // 引入的bundle.js在body底部
