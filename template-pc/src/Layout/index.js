@@ -12,6 +12,7 @@ const DefaultLayout = () => {
         <>
             <Routes>
                 {flattenRouteList.map((route, index) => {
+                    console.log('route: ', route);
                     if (route.redirect) {
                         return (
                             <Route

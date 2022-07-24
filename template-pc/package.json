@@ -36,7 +36,6 @@
     "babel-plugin-lodash": "^3.3.4",
     "cache-loader": "^4.1.0",
     "case-sensitive-paths-webpack-plugin": "^2.4.0",
-    "chars-replace-loader": "^2.3.1",
     "classnames": "^2.3.1",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
