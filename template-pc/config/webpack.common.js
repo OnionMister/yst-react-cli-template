@@ -42,7 +42,7 @@ module.exports = {
             filename: 'index.html',
             template: 'public/index.html',
             title: 'pc端',
-            inject: true,
+            inject: 'body', // 引入的bundle.js在body底部
             chunksSortMode: 'none',
         }),
         isDev && new ReactRefreshWebpackPlugin(),
@@ -71,7 +71,7 @@ module.exports = {
                 test: /\.less$/,
                 sideEffects: true,
                 use: [
-                    isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    isDev ? 'style-loader' : { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
                     { loader: 'css-loader', options: { importLoaders: 2 } }, 'postcss-loader',
                     'less-loader',
                 ],

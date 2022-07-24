@@ -10,7 +10,6 @@ module.exports = merge(common, {
     mode: 'production',
     devtool: 'nosources-source-map',
     output: {
-        publicPath: '/',
         path: path.resolve(PATH.DIST),
         filename: 'js/[name]-[contenthash:7].js',
         chunkFilename: 'js/[name]-[contenthash:7].js',
@@ -47,37 +46,4 @@ module.exports = merge(common, {
         new CleanWebpackPlugin(),
         new webpack.ids.HashedModuleIdsPlugin(),
     ],
-    module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'chars-replace-loader',
-                        options: {
-                            search: '(?:window\\.)?console\\.(log|info|warn|error)\\((["\\\'])tracker\\2,(.*)\\)(,|;)?',
-                            flags: 'g',
-                            /**
-                             * console.log 换为日志工具
-                             * @param match
-                             * @param fn 匹配的方法类型
-                             * @param quot 单引号还是双引号
-                             * @param logs 实际上报的参数
-                             * @param tailed 结尾符号
-                             * @param offset 当前命中字符串（match）的偏移值
-                             * @param string 字符串本串
-                             * @returns {string}
-                             */
-                            replace(match, fn, quot, logs, tailed, offset, string) {
-                                const filename = this.resourcePath.replace(process.env.PWD, '');
-                                const line = string.substr(0, offset).split('\n').length;
-                                return `(function(that){function parseArg(){ return [].slice.call(arguments).join(";"); };window.errortracker && window.errortracker.${fn}({ message: parseArg(${logs}), line: ${line}, filename: "${filename}" });}).call(this)${tailed || ''}`;
-                            },
-                        },
-                    },
-                ],
-            },
-        ],
-    },
 });
