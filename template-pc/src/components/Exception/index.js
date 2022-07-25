@@ -26,7 +26,6 @@ const typeMap = {
     },
 };
 const Exception = ({ type }) => {
-    console.log('type: ', type);
     const pageType = type in typeMap ? type : '404';
     const expConfig = typeMap[pageType];
 

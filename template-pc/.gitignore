@@ -3,6 +3,7 @@
 .vscode
 .idea
 .history
+.eslintcache
 .VSCodeCounter
 node_modules
 npm-debug.log
