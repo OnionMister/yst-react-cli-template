@@ -1,6 +1,6 @@
 import { init } from '@rematch/core';
 import createLoadingPlugin from '@rematch/loading';
-import * as models from './module';
+import * as models from './models';
 
 const loading = createLoadingPlugin({});
 
