@@ -1,15 +1,34 @@
-import React, { } from 'react';
+import React, { useState } from 'react';
 import {
     Route, Routes, Navigate,
 } from 'react-router-dom';
 import { flattenRoutes } from 'utils';
 import routes from 'routes';
+import {
+    Layout, Row, Col, Menu, Avatar, message,
+} from 'antd';
+import {
+    LoginOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MessageOutlined,
+} from '@ant-design/icons';
+import Logo from './components/Logo';
 
+const { Header, Content, Sider } = Layout;
 const flattenRouteList = flattenRoutes(routes);
 
 const DefaultLayout = () => {
+    const [collapsed, setCollapsed] = useState(false);
     return (
-        <>
+        <Layout>
+            <Sider
+                collapsed={collapsed}
+                width={200}
+            >
+                <Logo collapsed={collapsed} />
+                {/* <SiderMenu
+                    menus={menus}
+                    collapsed={collapsed}
+                /> */}
+            </Sider>
             <Routes>
                 {flattenRouteList.map((route, index) => {
                     console.log('route: ', route);
@@ -37,7 +56,7 @@ const DefaultLayout = () => {
                     );
                 })}
             </Routes>
-        </>
+        </Layout>
     );
 };
 

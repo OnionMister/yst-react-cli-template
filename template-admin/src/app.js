@@ -1,10 +1,11 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
+    BrowserRouter as Router, Route, Routes,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale-provider/zh_CN';
+import Login from 'pages/Login';
 import Layout from 'Layout';
 import store from 'store';
 import 'assets/less/reset.less';
@@ -20,6 +21,17 @@ export default () => {
         <ConfigProvider locale={zhCN}>
             <Provider store={store}>
                 <Router basename={basename}>
+                    <Routes>
+                        <Route
+                            exact={true}
+                            path="/login"
+                            element={<Login />}
+                        />
+                        {/* <Route
+                            path="/"
+                            element={<Layout />}
+                        /> */}
+                    </Routes>
                     <Layout />
                 </Router>
             </Provider>

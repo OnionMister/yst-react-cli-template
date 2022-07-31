@@ -1,6 +1,7 @@
 // 将路由按照路由模块分类
 import React from 'react';
 import Exception from 'components/Exception';
+import { loadableLazy } from 'utils';
 import home from './home';
 
 export default [
@@ -10,6 +11,12 @@ export default [
         hideChildrenInMenu: true,
         from: '/',
         to: '/home',
+    },
+    {
+        redirect: true,
+        from: '/',
+        to: '/login',
+        element: loadableLazy(() => import('pages/Login')),
     },
     {
         path: '/exception-403',
