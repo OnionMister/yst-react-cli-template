@@ -1,11 +1,11 @@
 # pc 项目模板
 
-## 本地开发方法
+## 本地开发方法（需要先`git init -y`）
+-  git初始化`git init -y`
 -  安装依赖 `npm install` 或 `yarn install`
 -  运行 `npm start` 或 `yarn start`
 
 ## 与远端仓库建立连接
-- git初始化`git init -y`
 - 连接仓库 `git remote origin add origin 仓库地址`
 
 ## 接口联调
