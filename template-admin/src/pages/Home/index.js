@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classBind from 'classnames/bind';
 import { connect } from 'react-redux';
-import imgSrc from 'assets/img/logo.png';
+import imgSrc from 'assets/img/dog.jpeg';
 import List from './components/List';
 import styles from './style.less';
 
