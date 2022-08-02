@@ -4,7 +4,7 @@ const apiMocker = require('mocker-api');
 
 module.exports = {
     opsConfig: {
-        CDN_FILE_BASE: 'react/template-pc',
+        CDN_FILE_BASE: 'react/template-admin',
     },
     webpackConfig: {
         stats: { // shell编译时控制台输出的内容有颜色区分

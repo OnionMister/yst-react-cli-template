@@ -14,6 +14,7 @@ module.exports = merge(common, {
         filename: 'js/[name]-[contenthash:7].js',
         chunkFilename: 'js/[name]-[contenthash:7].js',
         crossOriginLoading: 'anonymous',
+        assetModuleFilename: 'img/[name]-[hash:10][ext]',
     },
     optimization: {
         minimize: true,
