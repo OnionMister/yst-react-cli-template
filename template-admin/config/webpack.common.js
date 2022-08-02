@@ -72,7 +72,24 @@ module.exports = {
                 sideEffects: true,
                 use: [
                     isDev ? 'style-loader' : { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
-                    { loader: 'css-loader', options: { importLoaders: 2 } }, 'postcss-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: isDev,
+                            // 启用 css module
+                            modules: {
+                                localIdentName: '[local]--[hash:base64:7]',
+                                auto: /(?<![\\/]assets[\\/]less[\\/](reset|share))\.less$/i,
+                            },
+                            importLoaders: 2,
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: isDev,
+                        },
+                    },
                     'less-loader',
                 ],
             },
