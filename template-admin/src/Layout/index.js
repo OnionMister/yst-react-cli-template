@@ -4,6 +4,7 @@ import {
 } from 'react-router-dom';
 import { flattenRoutes } from 'utils';
 import routes from 'routes';
+import classBind from 'classnames/bind';
 import {
     Layout, Row, Col, Menu, Avatar, message,
 } from 'antd';
@@ -11,14 +12,16 @@ import {
     LoginOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MessageOutlined,
 } from '@ant-design/icons';
 import Logo from './components/Logo';
+import style from './style.less';
 
+const cx = classBind.bind(style);
 const { Header, Content, Sider } = Layout;
 const flattenRouteList = flattenRoutes(routes);
 
 const DefaultLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
     return (
-        <Layout>
+        <Layout className={cx('layout')}>
             <Sider
                 collapsed={collapsed}
                 width={200}
