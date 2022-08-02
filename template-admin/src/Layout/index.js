@@ -12,6 +12,7 @@ import {
     LoginOutlined, MenuFoldOutlined, MenuUnfoldOutlined, MessageOutlined,
 } from '@ant-design/icons';
 import Logo from './components/Logo';
+import SiderMenu from './components/SiderMenu';
 import style from './style.less';
 
 const cx = classBind.bind(style);
@@ -27,14 +28,12 @@ const DefaultLayout = () => {
                 width={200}
             >
                 <Logo collapsed={collapsed} />
-                {/* <SiderMenu
-                    menus={menus}
+                <SiderMenu
                     collapsed={collapsed}
-                /> */}
+                />
             </Sider>
             <Routes>
                 {flattenRouteList.map((route, index) => {
-                    console.log('route: ', route);
                     if (route.redirect) {
                         return (
                             <Route
