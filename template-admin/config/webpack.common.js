@@ -79,7 +79,7 @@ module.exports = {
                             // 启用 css module
                             modules: {
                                 localIdentName: '[local]--[hash:base64:7]',
-                                auto: /(?<![\\/]assets[\\/]less[\\/](reset|share))\.less$/i,
+                                auto: /((?<![\\/]assets[\\/]less[\\/](reset|share))\.less|(?<!node_modules)) $/i,
                             },
                             importLoaders: 2,
                         },
@@ -90,7 +90,14 @@ module.exports = {
                             sourceMap: isDev,
                         },
                     },
-                    'less-loader',
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                javascriptEnabled: true,
+                            },
+                        },
+                    },
                 ],
             },
             {
