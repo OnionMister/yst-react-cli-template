@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classBind from 'classnames/bind';
 import { connect } from 'react-redux';
+import { Button } from 'antd';
 import imgSrc from 'assets/img/dog.jpeg';
 import List from './components/List';
 import styles from './style.less';
@@ -15,14 +16,16 @@ const Home = ({ message, getCourseList }) => {
         });
     }, []);
     return (
-        <div
-            className={cx('home')}
-            onClick={() => setCount(count + 1)}
-        >
+        <div className={cx('home')}>
             <img src={imgSrc}></img>
             <div>欢迎使用yst-react-cli</div>
             <div>{message}</div>
-            <div>我是useState数据 - {count}</div>
+            <Button
+                type='primary'
+                onClick={() => setCount(count + 1)}
+            >count + 1
+            </Button>
+            <div>我是useState数据：{count}</div>
             <List courseList={courseList}/>
         </div>
     );
