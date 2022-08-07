@@ -70,6 +70,7 @@ module.exports = {
             {
                 test: /\.less$/,
                 sideEffects: true,
+                exclude: /node_modules/,
                 use: [
                     isDev ? 'style-loader' : { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
                     {
@@ -79,11 +80,34 @@ module.exports = {
                             // 启用 css module
                             modules: {
                                 localIdentName: '[local]--[hash:base64:7]',
-                                auto: /((?<![\\/]assets[\\/]less[\\/](reset|share))\.less|(?<!node_modules)) $/i,
+                                auto: /(?<![\\/]assets[\\/]less[\\/](reset|share))\.less$/i,
                             },
                             importLoaders: 2,
                         },
                     },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: isDev,
+                        },
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                javascriptEnabled: true,
+                            },
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.less$/,
+                sideEffects: true,
+                include: /node_modules/,
+                use: [
+                    isDev ? 'style-loader' : { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
+                    'css-loader',
                     {
                         loader: 'postcss-loader',
                         options: {
