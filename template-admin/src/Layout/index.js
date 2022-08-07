@@ -26,7 +26,7 @@ const DefaultLayout = () => {
                 collapsible
                 collapsed={collapsed}
             >
-                <div className="logo" />
+                <Logo collapsed={collapsed}/>
                 <Menu
                     theme="dark"
                     mode="inline"
@@ -50,20 +50,20 @@ const DefaultLayout = () => {
                     ]}
                 />
             </Sider>
-            <Layout className="site-layout">
+            <Layout className={cx('site-layout')}>
                 <Header
-                    className="site-layout-background"
+                    className={cx('site-layout-background')}
                     style={{
                         padding: 0,
                     }}
                 >
                     {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
-                        className: 'trigger',
+                        className: cx('trigger'),
                         onClick: () => setCollapsed(!collapsed),
                     })}
                 </Header>
                 <Content
-                    className="site-layout-background"
+                    className={cx('site-layout-background')}
                     style={{
                         margin: '24px 16px',
                         padding: 24,
