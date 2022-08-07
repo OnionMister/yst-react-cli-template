@@ -69,7 +69,8 @@ const SiderMenu = ({ menus, getMenuList, collapsed }) => {
 
     useEffect(() => {
         if (menus.length) {
-            setOpenKeys(getAllFolder(menus));
+            let newMens = menus.filter((item) => window.location.href.indexOf(item.componentPath) !== -1);
+            setOpenKeys(getAllFolder(newMens));
         }
     }, [menus, collapsed]);
     return (
