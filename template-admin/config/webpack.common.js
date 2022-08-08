@@ -52,7 +52,7 @@ module.exports = {
             {
                 test: /\.(js|jsx|ts|tsx)$/,
                 exclude: /node_modules/,
-                use: ['cache-loader', {
+                use: [{
                     loader: 'babel-loader',
                     options: {
                         plugins: isDev ? [require.resolve('react-refresh/babel')] : [],
