@@ -1,9 +1,13 @@
 import React, { useEffect, useState, memo } from 'react';
 import { Menu } from 'antd';
+import { ProfileOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
 import { connect } from 'react-redux';
 import classBind from 'classnames/bind';
 import style from './style.less';
+
+const baseFieldNames = { key: 'key', label: 'label', children: 'children' }
+
 
 const cx = classBind.bind(style);
 
@@ -56,35 +60,55 @@ const getPathQueue = (menus, pathname) => {
 const getAllFolder = (menus) => {
     return menus.map((i) => i.menuName);
 };
-const SiderMenu = ({ menus, getMenuList, collapsed }) => {
-    const location = useLocation();
-    const { pathname } = location;
-    const locPaths = getPathQueue(menus, pathname);
-    const selectedKeys = locPaths.map((m) => m.menuName).slice(-1);
-    const [openKeys, setOpenKeys] = useState([]);
+const SiderMenu = ({
+    getMenuList, collapsed, fieldNames = {},
+    icon = <ProfileOutlined />,
+}) => {
+    fieldNames = { ...baseFieldNames, ...fieldNames };
+    const [menus, setMenus] = useState([]);
+    // const location = useLocation();
+    // const { pathname } = location;
+    // const locPaths = getPathQueue(menus, pathname);
+    // const selectedKeys = locPaths.map((m) => m.menuName).slice(-1);
+    // const [openKeys, setOpenKeys] = useState([]);
 
-    useEffect(() => {
-        getMenuList();
+    const recursionOpreation = (arr = []) => arr.reduce((pre, cur) => {
+        console.log('cur[fieldNames.children] :>> ', cur, fieldNames.children, cur[fieldNames.children]);
+        let newItem = {};
+        newItem = {
+            ...cur, key: cur[fieldNames.key], children: cur[fieldNames.children],
+            label: cur[fieldNames.label],
+            // label: <Link to={cur[fieldNames.key]}>{cur[fieldNames.label]}</Link>,
+            icon,
+        }
+        if (cur?.[fieldNames.children]?.length) {
+            newItem.children = recursionOpreation(cur[fieldNames.children]);
+        }
+        pre.push(newItem);
+        return pre;
     }, []);
 
     useEffect(() => {
-        if (menus.length) {
-            let newMens = menus.filter((item) => window.location.href.indexOf(item.componentPath) !== -1);
-            setOpenKeys(getAllFolder(newMens));
-        }
-    }, [menus, collapsed]);
+        getMenuList().then((res) => {
+            setMenus(recursionOpreation(res));
+        });
+    }, []);
+
+    // useEffect(() => {
+    //     if (menus.length) {
+    //         let newMens = menus.filter((item) => window.location.href.indexOf(item.componentPath) !== -1);
+    //         setOpenKeys(getAllFolder(newMens));
+    //     }
+    // }, [menus, collapsed]);
     return (
         <Menu
+            defaultSelectedKeys={['1']}
+            defaultOpenKeys={['sub1']}
             mode="inline"
             theme="dark"
-            selectedKeys={selectedKeys}
-            openKeys={openKeys}
-            defaultSelectedKeys={selectedKeys}
-            onOpenChange={(keys) => setOpenKeys(keys)}
-            style={{ userSelect: 'none' }}
-        >
-            {menuItems(menus)}
-        </Menu>
+            inlineCollapsed={collapsed}
+            items={menus}
+        />
     );
 };
 
@@ -96,4 +120,4 @@ const mapDispatchToProps = ({ global }) => ({
     getMenuList: global.getMenuList,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SiderMenu);
+export default connect(mapStateToProps, mapDispatchToProps)(memo(SiderMenu));

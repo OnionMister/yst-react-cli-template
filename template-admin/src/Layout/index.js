@@ -27,27 +27,9 @@ const DefaultLayout = () => {
                 collapsed={collapsed}
             >
                 <Logo collapsed={collapsed}/>
-                <Menu
-                    theme="dark"
-                    mode="inline"
-                    defaultSelectedKeys={['1']}
-                    items={[
-                        {
-                            key: '1',
-                            icon: <ProfileOutlined />,
-                            label: 'nav 1',
-                        },
-                        {
-                            key: '2',
-                            icon: <ProfileOutlined />,
-                            label: 'nav 2',
-                        },
-                        {
-                            key: '3',
-                            icon: <ProfileOutlined />,
-                            label: 'nav 3',
-                        },
-                    ]}
+                <SiderMenu
+                    collapsed={collapsed}
+                    fieldNames={{ key: 'menuUri', label: 'menuName' }}
                 />
             </Sider>
             <Layout className={cx('site-layout')}>
