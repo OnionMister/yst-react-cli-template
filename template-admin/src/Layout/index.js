@@ -8,7 +8,7 @@ import classBind from 'classnames/bind';
 import {
     Layout, Row, Col, Menu, Avatar, message,
 } from 'antd';
-import { ProfileOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import Logo from './components/Logo';
 import SiderMenu from './components/SiderMenu';
 import style from './style.less';

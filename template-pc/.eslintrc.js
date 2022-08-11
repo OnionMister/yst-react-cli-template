@@ -58,9 +58,10 @@ module.exports = {
 
         // warn
         'import/prefer-default-export': 1,
+        'no-unused-vars': 1,
 
         // error
-        'no-unused-vars': ['error'],
+        // 'no-unused-vars': ['error'],
         indent: [2, 4, {
             SwitchCase: 1,
             VariableDeclarator: 1,
