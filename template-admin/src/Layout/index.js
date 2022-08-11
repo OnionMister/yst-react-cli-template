@@ -11,6 +11,7 @@ import {
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import Logo from './components/Logo';
 import SiderMenu from './components/SiderMenu';
+import Breadcrumb from './components/BreadCrumb';
 import style from './style.less';
 
 const cx = classBind.bind(style);
@@ -53,6 +54,8 @@ const DefaultLayout = () => {
                         minHeight: 280,
                     }}
                 >
+                    {/* <Breadcrumb /> */}
+
                     <Routes>
                         {flattenRouteList.map((route, index) => {
                             if (route.redirect) {
