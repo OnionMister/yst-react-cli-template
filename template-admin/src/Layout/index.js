@@ -25,6 +25,7 @@ const DefaultLayout = () => {
                 trigger={null}
                 collapsible
                 collapsed={collapsed}
+                collapsedWidth={1}
             >
                 <Logo collapsed={collapsed}/>
                 <SiderMenu
