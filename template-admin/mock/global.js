@@ -46,7 +46,7 @@ module.exports = {
                 children: [
                     {
                         menuId: 8,
-                        menuName: '菜单3-1',
+                        menuName: '菜单3-1111111111111111',
                         menuUri: '/menu3/3-1',
                         children: null,
                     },

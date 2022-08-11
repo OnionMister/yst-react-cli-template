@@ -46,6 +46,7 @@ const SiderMenu = ({ getMenuList, fieldNames = {}, icon = <ProfileOutlined /> })
             key: cur[fieldNames.key],
             children: cur[fieldNames.children],
             label: <Link to={cur[fieldNames.key]}>{cur[fieldNames.label]}</Link>,
+            title: cur[fieldNames.label],
             icon,
         };
         if (cur?.[fieldNames.children]?.length) {
