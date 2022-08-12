@@ -19,25 +19,22 @@ export default [
     },
     {
         path: '/exception-403',
-        element: () => <Exception type="403" />,
+        element: <Exception type="403" />,
     },
     {
         path: '/exception-10403',
-        element: () => <Exception type="10403" />,
+        element: <Exception type="10403" />,
     },
     {
         path: '/exception-404',
-        element: () => <Exception type="404" />,
+        element: <Exception type="404" />,
     },
     {
         path: '/exception-500',
-        element: () => <Exception type="500" />,
-    },
-    {
-        element: () => <Exception type="404" />,
+        element: <Exception type="500" />,
     },
     {
         path: '*',
-        element: <Navigate to="/home" />,
+        element: <Navigate to="/exception-404" />,
     },
 ];
