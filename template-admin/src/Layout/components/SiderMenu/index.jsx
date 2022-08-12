@@ -31,7 +31,9 @@ const getPathQueue = (menus, pathname) => {
 const getAllFolder = (menus) => {
     return menus.map((i) => i.key);
 };
-const SiderMenu = ({ getMenuList, fieldNames = {}, icon = <ProfileOutlined /> }) => {
+const SiderMenu = ({
+    getMenuList, fieldNames = {}, icon = <ProfileOutlined />, collapsed,
+}) => {
     fieldNames = { ...baseFieldNames, ...fieldNames };
     const [menus, setMenus] = useState([]);
     const location = useLocation();
@@ -65,6 +67,9 @@ const SiderMenu = ({ getMenuList, fieldNames = {}, icon = <ProfileOutlined /> })
         });
     }, []);
 
+    useEffect(() => {
+        setOpenKeys(getAllFolder(menus));
+    }, [collapsed]);
     return (
         <Menu
             selectedKeys={selectedKeys}
