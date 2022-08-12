@@ -16,7 +16,6 @@ const baseTag = document.getElementsByTagName('base')[0];
 if (baseTag) basename = baseTag.getAttribute('href');
 
 export default () => {
-    console.log('routes: ', routes);
     const CusRoutes = () => useRoutes(routes);
     return (
         <ConfigProvider locale={zhCN}>

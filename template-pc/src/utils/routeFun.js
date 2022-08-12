@@ -1,6 +1,7 @@
 /**
  * @description 路由相关方法封装
  */
+import React from 'react';
 import Loadable from 'react-loadable';
 import Loading from 'components/Loading';
 
@@ -14,10 +15,13 @@ export const flattenRoutes = (routes = [], parentPath = '') => {
 };
 
 // 路由懒加载
-export const loadableLazy = (component, config = {}) => Loadable({
-    loader: component,
-    loading: Loading,
-    delay: 300,
-    timedOut: 10000,
-    ...config,
-});
+export const loadableLazy = (component, config = {}) => {
+    const Element = Loadable({
+        loader: component,
+        loading: Loading,
+        delay: 300,
+        timedOut: 10000,
+        ...config,
+    });
+    return <Element />;
+};

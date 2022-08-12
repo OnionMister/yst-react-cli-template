@@ -2,7 +2,7 @@ import { loadableLazy } from 'utils';
 
 export default [
     {
-        path: '/home',
+        path: 'home',
         breadcrumb: '首页',
         meta: {
             layout: 'default',
@@ -10,7 +10,7 @@ export default [
         element: loadableLazy(() => import('pages/Home')),
     },
     {
-        path: '/home1',
+        path: 'home1',
         breadcrumb: '首页',
         meta: {
             layout: 'other',
