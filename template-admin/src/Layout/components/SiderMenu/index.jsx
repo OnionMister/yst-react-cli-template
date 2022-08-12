@@ -78,12 +78,4 @@ const SiderMenu = ({ getMenuList, fieldNames = {}, icon = <ProfileOutlined /> })
     );
 };
 
-const mapStateToProps = ({ global }) => ({
-    menus: global.menus,
-});
-
-const mapDispatchToProps = ({ global }) => ({
-    getMenuList: global.getMenuList,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(memo(SiderMenu));
+export default memo(SiderMenu);

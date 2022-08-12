@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classBind from 'classnames/bind';
-import { Spin } from 'antd';
 import { connect } from 'react-redux';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import imgSrc from 'assets/img/dog.jpeg';
 import List from './components/List';
 import styles from './style.less';
