@@ -48,9 +48,9 @@ const DefaultLayout = ({ getMenuList, getMenuListLoading }) => {
                     <Content
                         className={cx('site-layout-background')}
                         style={{
-                            margin: '24px 16px',
-                            padding: 24,
-                            minHeight: 280,
+                            // minHeight: 280,
+                            position: 'relative',
+                            overflowY: 'auto',
                         }}
                     >
                         {/* <Breadcrumb /> */}
