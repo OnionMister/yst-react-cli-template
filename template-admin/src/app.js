@@ -1,12 +1,11 @@
 import React from 'react';
 import {
-    BrowserRouter as Router, Route, Routes,
+    BrowserRouter as Router, useRoutes,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale-provider/zh_CN';
-import Login from 'pages/Login';
-import Layout from 'Layout';
+import routes from 'routes';
 import store from 'store';
 import 'assets/less/reset.less';
 import 'assets/less/share.less';
@@ -17,22 +16,13 @@ const baseTag = document.getElementsByTagName('base')[0];
 if (baseTag) basename = baseTag.getAttribute('href');
 
 export default () => {
+    console.log('routes: ', routes);
+    const CusRoutes = () => useRoutes(routes);
     return (
         <ConfigProvider locale={zhCN}>
             <Provider store={store}>
                 <Router basename={basename}>
-                    <Routes>
-                        <Route
-                            exact={true}
-                            path="/login"
-                            element={<Login />}
-                        />
-                        {/* <Route
-                            path="/"
-                            element={<Layout />}
-                        /> */}
-                    </Routes>
-                    <Layout />
+                    <CusRoutes />
                 </Router>
             </Provider>
         </ConfigProvider>
