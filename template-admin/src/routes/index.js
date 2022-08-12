@@ -41,4 +41,8 @@ export default [
     {
         element: <Exception type="404" />,
     },
+    {
+        path: '*',
+        element: <Navigate to="/home" />,
+    },
 ];
