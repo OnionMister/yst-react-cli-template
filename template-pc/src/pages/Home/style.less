@@ -1,6 +1,15 @@
-.home {
+.home__spin {
     width: 100%;
     height: 100%;
+
+    :global {
+        .ant-spin-container {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+.home:extend(.home__spin) {
     text-align: center;
     font-size: 30px;
     background: url(assets/img/bg.png);
