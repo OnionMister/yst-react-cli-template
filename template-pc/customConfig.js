@@ -14,7 +14,7 @@ module.exports = {
             hot: true,
             open: true,
             host: 'localhost',
-            port: 8600,
+            port: 8602,
             historyApiFallback: true,
             setupMiddlewares(middlewares, devServer) { // webpack5 中间件新配置
                 if (!devServer) {
