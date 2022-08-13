@@ -45,14 +45,7 @@ const DefaultLayout = ({ getMenuList, getMenuListLoading }) => {
                             onClick: () => setCollapsed(!collapsed),
                         })}
                     </Header>
-                    <Content
-                        className={cx('site__layout__content')}
-                        style={{
-                            // minHeight: 280,
-                            position: 'relative',
-                            overflowY: 'auto',
-                        }}
-                    >
+                    <Content className={cx('site__layout__content')}>
                         <Breadcrumb />
                         <Outlet />
                     </Content>
