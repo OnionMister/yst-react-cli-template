@@ -38,7 +38,7 @@ th,td {
 /* custom */
 a {
 	outline:none;
-	color:#16418a;
+	color: #1890ff;
 	text-decoration:none;
 	-webkit-backface-visibility:hidden;
 }
@@ -47,4 +47,19 @@ a:focus {
 }
 input:focus,select:focus,textarea:focus {
 	outline:-webkit-focus-ring-color auto 0;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+}
+
+:hover::-webkit-scrollbar-thumb{
+	border-radius: 1em;
+	background-color: rgba(50,50,50,.3);
+}
+
+:hover::-webkit-scrollbar-track{
+	border-radius: 1em;
+	background-color: rgba(50,50,50,.1);
 }
