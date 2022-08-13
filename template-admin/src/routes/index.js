@@ -4,6 +4,7 @@ import Exception from 'components/Exception';
 import { loadableLazy } from 'utils';
 import { Navigate } from 'react-router';
 import home from './home';
+import menus1 from './menus1';
 
 export default [
     {
@@ -16,6 +17,7 @@ export default [
                 element: <Navigate to="/home" />,
             },
             ...home,
+            ...menus1,
         ],
     },
     {

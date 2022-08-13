@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Breadcrumb } from 'antd';
 import classBind from 'classnames/bind';
-import { createBrowserHistory } from 'history';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { matchPath } from 'react-router';
 import routes from 'routes';
 import styles from './style.less';
@@ -10,7 +9,7 @@ import styles from './style.less';
 const cx = classBind.bind(styles);
 
 const BreadcrumbView = () => {
-    const history = createBrowserHistory();
+    const useLocal = useLocation();
     const [breadcrumbCon, setBreadcrumbCon] = useState([]); // 要渲染的面包屑
 
     // 扁平化路由且子路由补全
@@ -21,8 +20,10 @@ const BreadcrumbView = () => {
         }
         const item = { path: cur.path, breadcrumb: cur.breadcrumb };
         if (parent) {
+            // 是否补斜线
+            const addSlant = !parent?.path?.endsWith?.('/') && !item?.path?.startsWith?.('/') ? '/' : '';
             // 子路由补全
-            item.path = parent.path + item.path;
+            item.path = parent.path + addSlant + item.path;
         }
         prev.push(item);
         // 有子项则递归
@@ -103,13 +104,10 @@ const BreadcrumbView = () => {
         setBreadcrumbCon(breadcrumb);
         sessionStorage.setItem('breadcrumb', JSON.stringify(breadcrumb));
     };
+
     useEffect(() => {
-        breadcrumbQueryHandle(getBreadcrumbs({ flattenRoutes: flattenRoute(routes), location: window.location }));
-        // 监听路由变化
-        history.listen(() => {
-            breadcrumbQueryHandle(getBreadcrumbs({ flattenRoutes: flattenRoute(routes), location: window.location }));
-        });
-    }, []);
+        breadcrumbQueryHandle(getBreadcrumbs({ flattenRoutes: flattenRoute(routes), location: useLocal }));
+    }, [useLocal]);
     const extraBreadcrumbItems = breadcrumbCon.map((item, index) => {
         return (
             <Breadcrumb.Item key={index}>
