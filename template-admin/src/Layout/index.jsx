@@ -53,7 +53,7 @@ const DefaultLayout = ({ getMenuList, getMenuListLoading }) => {
                             overflowY: 'auto',
                         }}
                     >
-                        {/* <Breadcrumb /> */}
+                        <Breadcrumb />
                         <Outlet />
                     </Content>
                 </Layout>

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Breadcrumb } from 'antd';
 import classBind from 'classnames/bind';
-import { useNavigate, Link } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { Link } from 'react-router-dom';
 import { matchPath } from 'react-router';
 import routes from 'routes';
 import styles from './style.less';
@@ -9,28 +10,32 @@ import styles from './style.less';
 const cx = classBind.bind(styles);
 
 const BreadcrumbView = () => {
-    const history = useNavigate();
+    const history = createBrowserHistory();
     const [breadcrumbCon, setBreadcrumbCon] = useState([]); // 要渲染的面包屑
+    console.log('breadcrumbCon: ', breadcrumbCon);
 
     // 扁平化路由且子路由补全
     const flattenRoute = (arr, parent) => arr.reduce((prev, cur) => {
+        console.log('arr, parent: ', arr, parent);
         // 过滤不包含路由或面包屑的项
         if (!cur.path || !cur.breadcrumb) {
             return prev;
         }
         const item = { path: cur.path, breadcrumb: cur.breadcrumb };
+        console.log('item: ', item);
         if (parent) {
             // 子路由补全
             item.path = parent.path + item.path;
         }
         prev.push(item);
         // 有子项则递归
-        Array.isArray(cur.childRoutes) && (prev = prev.concat(flattenRoute(cur.childRoutes, item)));
+        Array.isArray(cur.children) && (prev = prev.concat(flattenRoute(cur.children, item)));
         return prev;
     }, []);
 
     // 生成面包屑导航结构
     const getBreadcrumbs = ({ flattenRoutes, location }) => {
+        console.log('flattenRoutes, location: ', flattenRoutes, location);
         // 初始化匹配数组match
         let matches = [];
         // 携带query参数，当点击面包屑的时候带回原路由上的参数。
@@ -51,6 +56,7 @@ const BreadcrumbView = () => {
                 // 传递给下一次reduce的路径部分
                 return pathSection;
             });
+        console.log('matches :>> ', matches);
         return matches;
     };
 
@@ -66,7 +72,7 @@ const BreadcrumbView = () => {
             // 当前路由和query进行分割
             const comparePath = pathSection.split('?')[0];
             // 查找是否有匹配
-            return matchPath(comparePath, { path, exact: true });
+            return matchPath({ path, exact: true }, comparePath);
         });
 
         // 返回breadcrumb的值，没有就返回原匹配子路径名
@@ -82,6 +88,7 @@ const BreadcrumbView = () => {
     };
 
     const breadcrumbQueryHandle = (breadcrumb) => {
+        console.log('breadcrumb: ', breadcrumb);
         if (sessionStorage.breadcrumb) {
             // 拿到带有query参数带路由
             const sessionBreadcrumb = JSON.parse(sessionStorage.breadcrumb);
@@ -110,6 +117,7 @@ const BreadcrumbView = () => {
         });
     }, []);
     const extraBreadcrumbItems = breadcrumbCon.map((item, index) => {
+        console.log('item: ', item);
         return (
             <Breadcrumb.Item key={index}>
                 {

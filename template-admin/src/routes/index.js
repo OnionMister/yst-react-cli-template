@@ -9,6 +9,7 @@ export default [
     {
         path: '/',
         element: loadableLazy(() => import('Layout')),
+        breadcrumb: '首页',
         children: [
             {
                 index: true,

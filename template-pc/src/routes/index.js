@@ -9,6 +9,7 @@ export default [
     {
         path: '/',
         element: <Outlet />,
+        breadcrumb: '首页',
         children: [
             {
                 index: true,
