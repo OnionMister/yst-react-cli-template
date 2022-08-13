@@ -119,3 +119,26 @@ export const numberInputLimit = (e) => {
     if (value == 0) return '';
     return value.replace(/[^0-9]/g, '');
 };
+
+// 判断浏览器函数
+export function getIsMobile() {
+    if (window.navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) {
+        return true; // 移动端
+    }
+    return false; // PC端
+}
+
+/**
+ *  获取域名env标示
+ * */
+export function getHostEnv() {
+    const tests = ['trunk', 'neibu', 'release', 'localhost'];
+    let env = '';
+    let [first, second] = window.location.hostname.split('.');
+    if (first.endsWith('test')) {
+        env = 'test';
+    } else if (tests.includes(second)) {
+        env = `.${second}`;
+    }
+    return env;
+}
