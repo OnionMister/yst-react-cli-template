@@ -136,3 +136,9 @@ export function POST(url, data, options) {
         ...options,
     });
 }
+
+// 导出
+export async function exportDownload(url = '', data = {}) {
+    const joinUrl = genUrl(url, data);
+    window.open(joinUrl);
+}

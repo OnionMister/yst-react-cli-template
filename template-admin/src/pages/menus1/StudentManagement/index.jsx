@@ -11,7 +11,7 @@ import styles from './style.less';
 const { TabPane } = Tabs;
 const cx = classBind.bind(styles);
 const StudentManagement = ({
-    studentListParams, postStudentList, postStudentListLoading, studentList,
+    studentListParams, postStudentList, postStudentListLoading, studentList, postStudentListExport,
 }) => {
     const [form] = Form.useForm();
 
@@ -132,7 +132,7 @@ const StudentManagement = ({
                             maxLength={25}
                         />
                     </Form.Item>
-                    <Form.Item className={'page-from-submit'}>
+                    <Form.Item className={cx('page-from-submit')}>
                         <Button
                             onClick={() => {
                                 form.resetFields();
@@ -153,6 +153,22 @@ const StudentManagement = ({
                         </Button>
                     </Form.Item>
                 </Form>
+                <div className={cx('page-button-area')}>
+                    <Button
+                        type="primary"
+                        onClick={() => postStudentListExport(studentListParams)}
+                        className={cx('btn')}
+                    >
+                        导出
+                    </Button>
+                    <Button
+                        type="primary"
+                        onClick={() => message.info('点击了新增')}
+                        className={cx('btn')}
+                    >
+                        新增
+                    </Button>
+                </div>
                 <Tabs defaultActiveKey="1">
                     <TabPane
                         tab="学生列表"

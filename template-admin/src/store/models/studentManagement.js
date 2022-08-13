@@ -1,4 +1,4 @@
-import { POST } from 'utils';
+import { POST, exportDownload } from 'utils';
 
 export default {
     state: {
@@ -20,6 +20,12 @@ export default {
         async postStudentList(payload) {
             const res = await POST('/api/student/list', payload);
             this.setState({ studentList: res || [], studentListParams: payload });
+            return res;
+        },
+
+        // 导出
+        async postStudentListExport(payload) {
+            const res = await exportDownload('/api/student/list/export', payload);
             return res;
         },
     },
