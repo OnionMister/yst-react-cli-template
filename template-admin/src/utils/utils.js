@@ -125,3 +125,10 @@ export const playOneAudio = () => {
         i.addEventListener('play', pauseAll.bind(i));
     });
 };
+
+// 只可输入数字限制
+export const numberInputLimit = (e) => {
+    const { value } = e.target;
+    if (value == 0) return '';
+    return value.replace(/[^0-9]/g, '');
+};

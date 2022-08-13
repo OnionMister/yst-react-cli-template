@@ -17,6 +17,66 @@
    overflow: hidden !important;
 }
 
+// popover样式重制
+.comment-popover {
+    max-width: 350px;
+    .ant-popover-inner-content {
+        padding: 6px !important;
+        word-wrap: break-word;
+        word-break: break-all;
+        font-size: 12px;
+    }
+}
+
+// 公用-页标题样式
+.page-title {
+    width: 100%;
+    height: 50px;
+    background: #ffffff;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 20px;
+    box-shadow: 1px 2px 3px #ccc;
+}
+
+// 公用-表单查询样式
+.page-con {
+    min-height: 600px;
+    margin: 20px;
+    padding: 30px;
+    background-color: #ffffff;
+}
+
+// 表格表单
+.page-form {
+    // 表单项
+    .ant-form-item {
+        margin-bottom: 15px!important;
+    }
+    // 查询、重置独占一行并剧中
+    .page-from-submit {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.operation-btn {
+    color: #1890ff;
+    cursor: pointer;
+    margin: 0px 8px;
+
+    &.disable {
+        color: #999;
+        cursor: not-allowed;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+
 .df {
     display: flex;
 }

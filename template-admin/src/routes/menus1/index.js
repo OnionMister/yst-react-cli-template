@@ -15,7 +15,7 @@ export default [
             {
                 path: 'menus1-1',
                 breadcrumb: '菜单1-1',
-                element: loadableLazy(() => import('pages/Home')),
+                element: loadableLazy(() => import('pages/Menus1')),
             },
         ],
     },
