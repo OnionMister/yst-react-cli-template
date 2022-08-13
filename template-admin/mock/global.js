@@ -14,8 +14,8 @@ module.exports = {
                 children: [
                     {
                         menuId: 2,
-                        menuName: '菜单1-1',
-                        menuUri: '/menus1/menus1-1',
+                        menuName: '学生管理',
+                        menuUri: '/menus1/studentManagement',
                         children: null,
                     },
                     {

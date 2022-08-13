@@ -10,7 +10,7 @@ import styles from './style.less';
 
 const { TabPane } = Tabs;
 const cx = classBind.bind(styles);
-const Home = ({
+const StudentManagement = ({
     studentListParams, postStudentList, postStudentListLoading, studentList,
 }) => {
     const [form] = Form.useForm();
@@ -102,7 +102,7 @@ const Home = ({
         });
     };
     return (
-        <div className={cx('menus1')}>
+        <div className={cx('studentManagement')}>
             <div className={cx('page-title')}>学生列表管理</div>
             <div className={cx('page-con')}>
                 <Form
@@ -181,11 +181,11 @@ const Home = ({
     );
 };
 
-const mapStateToProps = ({ menus1, loading }) => ({
-    postStudentListLoading: loading.effects.menus1.postStudentList,
-    ...menus1,
+const mapStateToProps = ({ studentManagement, loading }) => ({
+    postStudentListLoading: loading.effects.studentManagement.postStudentList,
+    ...studentManagement,
 });
 const mapDispatchToProps = (dispatch) => {
-    return { ...dispatch.menus1 };
+    return { ...dispatch.studentManagement };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(StudentManagement);

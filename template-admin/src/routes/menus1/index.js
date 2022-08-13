@@ -10,12 +10,12 @@ export default [
         children: [
             {
                 index: true,
-                element: <Navigate to="menus1-1" />,
+                element: <Navigate to="studentManagement" />,
             },
             {
-                path: 'menus1-1',
-                breadcrumb: '菜单1-1',
-                element: loadableLazy(() => import('pages/Menus1')),
+                path: 'studentManagement',
+                breadcrumb: '学生列表管理',
+                element: loadableLazy(() => import('pages/menus1/StudentManagement')),
             },
         ],
     },
