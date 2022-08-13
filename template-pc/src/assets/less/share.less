@@ -1,0 +1,32 @@
+/**
+ * @description: 溢出影藏单行样式
+ */
+ .ellipsis-text-one {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/**
+* @description: 溢出影藏两行样式
+*/
+.ellipsis-text-two {
+   display: -webkit-box !important;
+   -webkit-box-orient: vertical !important;
+   -webkit-line-clamp: 2 !important;
+   overflow: hidden !important;
+}
+
+.df {
+    display: flex;
+}
+
+.df-start-center:extend(.df) {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.df-center-center:extend(.df) {
+    justify-content: center;
+    align-items: center;
+}

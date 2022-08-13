@@ -52,7 +52,7 @@ module.exports = {
             {
                 test: /\.(js|jsx|ts|tsx)$/,
                 exclude: /node_modules/,
-                use: ['cache-loader', {
+                use: [{
                     loader: 'babel-loader',
                     options: {
                         plugins: isDev ? [require.resolve('react-refresh/babel')] : [],
@@ -70,30 +70,73 @@ module.exports = {
             {
                 test: /\.less$/,
                 sideEffects: true,
+                exclude: /node_modules/,
                 use: [
                     isDev ? 'style-loader' : { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
-                    { loader: 'css-loader', options: { importLoaders: 2 } }, 'postcss-loader',
-                    'less-loader',
-                ],
-            },
-            {
-                test: /\.(?:png|jpe?g|gif|svg|woff|eot|ttf)\??.*$/,
-                use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'css-loader',
                         options: {
-                            // 图片小于10kB，会将图片传换成base64编码处理，
-                            // 目的是为了将小图转为编码减少请求数量减轻服务器压力，
-                            // 会导致图片体积增大，即base64编码比原图体积大（建议对小于12kB的图做编码处理，大图不处理）
-                            limit: 10 * 1024,
-                            // 关闭es6模块化处理，避免与html-loader的common.js规范冲突，发生冲突会导致路径变成“[object Module]”
-                            // 新版本已经没有这个问题了 可以不关闭。
-                            esModule: false,
-                            // 默认图片命名为chunk的hash值，太长了
-                            name: 'img/[name]-[sha512:hash:base64:7].[ext]',
+                            sourceMap: isDev,
+                            // 启用 css module
+                            modules: {
+                                localIdentName: '[local]--[hash:base64:7]',
+                                auto: /(?<![\\/]assets[\\/]less[\\/](reset|share))\.less$/i,
+                            },
+                            importLoaders: 2,
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: isDev,
+                        },
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                javascriptEnabled: true,
+                            },
                         },
                     },
                 ],
+            },
+            {
+                test: /\.less$/,
+                sideEffects: true,
+                include: /node_modules/,
+                use: [
+                    isDev ? 'style-loader' : { loader: MiniCssExtractPlugin.loader, options: { esModule: false } },
+                    'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: isDev,
+                        },
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            lessOptions: {
+                                javascriptEnabled: true,
+                                modifyVars: { // antd定制主题配置
+                                    'primary-color': '#1890ff',
+                                },
+                            },
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.(png|jpe?g|gif|webp|svg|woff|eot|ttf)$/,
+                type: 'asset',
+                parser: {
+                    // 小于20kb的图片转base64
+                    // 优点：减少请求数量  缺点：体积会增大三分之一
+                    dataUrlCondition: {
+                        maxSize: 20 * 1024, // 20kb
+                    },
+                },
             },
         ],
     },
