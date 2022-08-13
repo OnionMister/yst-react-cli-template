@@ -17,9 +17,16 @@
    overflow: hidden !important;
 }
 
-
-.df-center-center {
+.df {
     display: flex;
+}
+
+.df-start-center:extend(.df) {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.df-center-center:extend(.df) {
     justify-content: center;
     align-items: center;
 }
