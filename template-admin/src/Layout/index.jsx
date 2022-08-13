@@ -33,9 +33,9 @@ const DefaultLayout = ({ getMenuList, getMenuListLoading }) => {
                         fieldNames={{ key: 'menuUri', label: 'menuName' }}
                     />
                 </Sider>
-                <Layout className={cx('site-layout')}>
+                <Layout className={cx('site__layout')}>
                     <Header
-                        className={cx('site-layout-background')}
+                        className={cx('site__layout__header')}
                         style={{
                             padding: 0,
                         }}
@@ -46,7 +46,7 @@ const DefaultLayout = ({ getMenuList, getMenuListLoading }) => {
                         })}
                     </Header>
                     <Content
-                        className={cx('site-layout-background')}
+                        className={cx('site__layout__content')}
                         style={{
                             // minHeight: 280,
                             position: 'relative',
