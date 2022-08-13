@@ -7,7 +7,7 @@ import fetchJsonp from 'fetch-jsonp';
 import queryString from 'qs';
 import { message } from 'antd';
 import { createBrowserHistory } from 'history';
-import { errorTrack, objectTrim } from 'utils';
+import { objectTrim } from 'utils';
 
 export const history = createBrowserHistory();
 
@@ -41,7 +41,7 @@ async function fetchWithStatus(url, options) {
     } catch (err) {
         err.api = url;
         if (process.env.NODE_ENV === 'production') {
-            errorTrack(err);
+            // 上报错误
         }
         if (err.status === 403) {
             setTimeout(() => {
@@ -76,7 +76,7 @@ async function fetchWithStatusByJsonp(url, options) {
     } catch (err) {
         err.api = url;
         if (process.env.NODE_ENV === 'production') {
-            errorTrack(err);
+            // 上报错误
         }
         message.error(err.message);
         throw err.message;

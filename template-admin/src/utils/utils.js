@@ -28,19 +28,6 @@ export function getEnv() {
     return Env;
 }
 
-export function now() { return new Date(); }
-/**
-* 上报错误
-* @param {*} err
-*/
-export function errorTrack(err) {
-    window.errortracker && window.errortracker.log({
-        filename: '',
-        line: 0,
-        message: serializeError(err),
-    });
-}
-
 /**
 * 序列化Error,
 * 因为 error 直接 JSON.stringify 会返回 '{}', 所以需要序列化一下

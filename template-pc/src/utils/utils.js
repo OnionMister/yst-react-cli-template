@@ -28,19 +28,6 @@ export function getEnv() {
     return Env;
 }
 
-export function now() { return new Date(); }
-/**
-* 上报错误
-* @param {*} err
-*/
-export function errorTrack(err) {
-    window.errortracker && window.errortracker.log({
-        filename: '',
-        line: 0,
-        message: serializeError(err),
-    });
-}
-
 /**
 * 序列化Error,
 * 因为 error 直接 JSON.stringify 会返回 '{}', 所以需要序列化一下
@@ -124,4 +111,11 @@ export const playOneAudio = () => {
     [].forEach.call(audios, function(i) {
         i.addEventListener('play', pauseAll.bind(i));
     });
+};
+
+// 只可输入数字限制
+export const numberInputLimit = (e) => {
+    const { value } = e.target;
+    if (value == 0) return '';
+    return value.replace(/[^0-9]/g, '');
 };
