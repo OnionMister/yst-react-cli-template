@@ -5,7 +5,6 @@ import { Navigate, Outlet } from 'react-router';
 import home from './home';
 
 export default [
-    ...home,
     {
         path: '/',
         element: <Outlet />,
