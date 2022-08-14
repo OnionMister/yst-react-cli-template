@@ -24,6 +24,7 @@ const Home = ({ message, getCourseList, getCourseListLoading }) => {
             <div className={cx('home')}>
                 <img src={imgSrc}></img>
                 <div>欢迎使用yst-react-cli</div>
+                <div>请使用2倍设计稿，如375视口使用750设计稿</div>
                 <div>{message}</div>
                 <Button
                     type='primary'
