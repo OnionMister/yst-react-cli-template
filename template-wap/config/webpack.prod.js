@@ -27,17 +27,15 @@ module.exports = merge(common, {
             // 防止提取的chunk过碎
             minSize: 1024 * 50,
             cacheGroups: {
-                vendor: {
+                defaultVendors: {
                     test: /[\\/]node_modules[\\/]/,
-                    name(module) {
-                        // get the name. E.g. node_modules/packageName/not/this/part.js
-                        // or node_modules/packageName
-                        // 对共同前缀的包做了合并(a-b, a-c => a.1234.js)
-                        const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/-]|$)/)[1];
-
-                        // npm package names are URL-safe, but some servers don't like @ symbols
-                        return `npm.${packageName.replace('@', '')}`;
-                    },
+                    priority: -10,
+                    reuseExistingChunk: true,
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true,
                 },
             },
         },
