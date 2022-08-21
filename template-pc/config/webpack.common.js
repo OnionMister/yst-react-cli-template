@@ -151,5 +151,7 @@ module.exports = {
         minimizer: [
             new CssMinimizerPlugin(),
         ],
+        chunkIds: 'named',
+        moduleIds: 'named',
     },
 };
