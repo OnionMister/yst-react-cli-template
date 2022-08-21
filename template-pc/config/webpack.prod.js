@@ -1,5 +1,6 @@
 process.env.NODE_ENV = 'production';
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const path = require('path');
@@ -18,6 +19,21 @@ module.exports = merge(common, {
     },
     optimization: {
         minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                parallel: true, // 多进程
+                extractComments: true, // 提取注释
+                terserOptions: {
+                    ecma: undefined, // 不限制es规范
+                    parse: {},
+                    compress: {
+                        drop_console: false, // 不删除console
+                        drop_debugger: true,
+                        pure_funcs: ['console.log'], // 移除console.log
+                    },
+                },
+            }),
+        ],
         runtimeChunk: 'single',
         splitChunks: {
             chunks: 'all',
@@ -27,21 +43,20 @@ module.exports = merge(common, {
             // 防止提取的chunk过碎
             minSize: 1024 * 50,
             cacheGroups: {
-                vendor: {
+                defaultVendors: {
                     test: /[\\/]node_modules[\\/]/,
-                    name(module) {
-                        // get the name. E.g. node_modules/packageName/not/this/part.js
-                        // or node_modules/packageName
-                        // 对共同前缀的包做了合并(a-b, a-c => a.1234.js)
-                        const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/-]|$)/)[1];
-
-                        // npm package names are URL-safe, but some servers don't like @ symbols
-                        return `npm.${packageName.replace('@', '')}`;
-                    },
+                    priority: -10,
+                    reuseExistingChunk: true,
+                },
+                default: {
+                    minChunks: 2,
+                    priority: -20,
+                    reuseExistingChunk: true,
                 },
             },
         },
-        chunkIds: 'named',
+        chunkIds: 'deterministic',
+        moduleIds: 'deterministic',
     },
     plugins: [
         new CleanWebpackPlugin(),

@@ -148,8 +148,12 @@ module.exports = {
         ],
     },
     optimization: {
+        minimize: true,
         minimizer: [
+            '...',
             new CssMinimizerPlugin(),
         ],
+        chunkIds: 'named',
+        moduleIds: 'named',
     },
 };

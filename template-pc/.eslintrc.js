@@ -62,6 +62,7 @@ module.exports = {
 
         // error
         // 'no-unused-vars': ['error'],
+        quotes: ['error', 'single', { allowTemplateLiterals: true }],
         indent: [2, 4, {
             SwitchCase: 1,
             VariableDeclarator: 1,
