@@ -41,7 +41,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: isDev ? 'index.html' : '../../../index.html', // 保证生产环境下index.html位于dist下
             template: 'public/index.html',
-            title: 'pc端',
+            title: 'wap端',
             inject: 'body', // 引入的bundle.js在body底部
             chunksSortMode: 'none',
         }),
@@ -148,6 +148,7 @@ module.exports = {
         ],
     },
     optimization: {
+        minimize: true,
         minimizer: [
             new CssMinimizerPlugin(),
         ],

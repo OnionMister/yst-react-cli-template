@@ -1,5 +1,6 @@
 process.env.NODE_ENV = 'production';
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const path = require('path');
@@ -18,6 +19,21 @@ module.exports = merge(common, {
     },
     optimization: {
         minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                parallel: true, // 多进程
+                extractComments: true, // 提取注释
+                terserOptions: {
+                    ecma: undefined, // 不限制es规范
+                    parse: {},
+                    compress: {
+                        drop_console: false, // 不删除console
+                        drop_debugger: true,
+                        pure_funcs: ['console.log'], // 移除console.log
+                    },
+                },
+            }),
+        ],
         runtimeChunk: 'single',
         splitChunks: {
             chunks: 'all',

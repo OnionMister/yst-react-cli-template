@@ -148,6 +148,7 @@ module.exports = {
         ],
     },
     optimization: {
+        minimize: true,
         minimizer: [
             new CssMinimizerPlugin(),
         ],
