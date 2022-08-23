@@ -137,8 +137,8 @@ export function getHostEnv() {
     let [first, second] = window.location.hostname.split('.');
     if (first.endsWith('test')) {
         env = 'test';
-    } else if (tests.includes(second)) {
-        env = `.${second}`;
+    } else if (tests.includes(second) || first === 'localhost') {
+        env = first === 'localhost' ? '.neibu' : `.${second}`;
     }
     return env;
 }
