@@ -3,8 +3,8 @@ import {
     BrowserRouter as Router,
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { ConfigProvider } from 'antd';
-import zhCN from 'antd/es/locale-provider/zh_CN';
+import { ConfigProvider } from 'antd-mobile';
+import zhCN from 'antd-mobile/es/locales/zh-CN';
 import Layout from 'Layout';
 import store from 'store';
 import 'assets/less/reset.less';

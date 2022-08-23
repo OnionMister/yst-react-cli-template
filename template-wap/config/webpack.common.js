@@ -119,9 +119,6 @@ module.exports = {
                         options: {
                             lessOptions: {
                                 javascriptEnabled: true,
-                                modifyVars: { // antd定制主题配置
-                                    'primary-color': '#1890ff',
-                                },
                             },
                         },
                     },

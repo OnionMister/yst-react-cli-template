@@ -5,7 +5,7 @@
 import fetch from 'isomorphic-fetch';
 import fetchJsonp from 'fetch-jsonp';
 import queryString from 'qs';
-import { message } from 'antd';
+import { Toast } from 'antd-mobile';
 import { createBrowserHistory } from 'history';
 import { objectTrim } from 'utils';
 
@@ -57,9 +57,9 @@ async function fetchWithStatus(url, options) {
                     history.push('/login');
                 }, 1000);
             }
-            message.error(err.message);
+            Toast.show({ content: err.message });
         } else {
-            message.error(err.message);
+            Toast.show({ content: err.message });
         }
         throw err.message;
     }
@@ -78,7 +78,7 @@ async function fetchWithStatusByJsonp(url, options) {
         if (process.env.NODE_ENV === 'production') {
             // 上报错误
         }
-        message.error(err.message);
+        Toast.show({ content: err.message });
         throw err.message;
     }
 }

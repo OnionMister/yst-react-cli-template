@@ -12,7 +12,7 @@ module.exports = {
         ],
     ],
     plugins: [
-        ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }], // 按需载入antd
+        ['import', { libraryName: 'antd-mobile', libraryDirectory: 'es/components', style: false }], // 按需载入
         'lodash',
         [
             '@babel/plugin-transform-runtime', // 处理es6，es7新特性，如：Map、Set、Array.includes() 等
