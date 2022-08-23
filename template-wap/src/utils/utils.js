@@ -54,9 +54,9 @@ export function getQuerySearch() {
     let theRequest = {};
     if (url.indexOf('?') != -1) {
         let str = url.substring(1);
-        let strs = str.split('&');
-        for (let i = 0; i < strs.length; i++) {
-            const [name, value = ''] = strs[i].split('=');
+        let strArr = str.split('&');
+        for (let i = 0; i < strArr.length; i++) {
+            const [name, value = ''] = strArr[i].split('=');
             theRequest[name] = decodeURI(value);
         }
     }
