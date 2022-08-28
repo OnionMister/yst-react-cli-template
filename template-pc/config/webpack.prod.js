@@ -57,6 +57,7 @@ module.exports = merge(common, {
         },
         chunkIds: 'deterministic',
         moduleIds: 'deterministic',
+        usedExports: true,
     },
     plugins: [
         new CleanWebpackPlugin(),
