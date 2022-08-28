@@ -37,6 +37,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'css/[name]-[contenthash].css',
             chunkFilename: 'css/[name]-[contenthash].css',
+            ignoreOrder: false,
         }),
         new HtmlWebpackPlugin({
             filename: isDev ? 'index.html' : '../../../index.html', // 保证生产环境下index.html位于dist下
@@ -119,9 +120,6 @@ module.exports = {
                         options: {
                             lessOptions: {
                                 javascriptEnabled: true,
-                                modifyVars: { // antd定制主题配置
-                                    'primary-color': '#1890ff',
-                                },
                             },
                         },
                     },

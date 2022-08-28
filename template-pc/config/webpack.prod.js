@@ -57,9 +57,14 @@ module.exports = merge(common, {
         },
         chunkIds: 'deterministic',
         moduleIds: 'deterministic',
+        usedExports: true,
     },
     plugins: [
         new CleanWebpackPlugin(),
         new webpack.ids.HashedModuleIdsPlugin(),
     ],
+    performance: {
+        maxAssetSize: 1024 * 1024,
+        maxEntrypointSize: 1024 * 1024,
+    },
 });

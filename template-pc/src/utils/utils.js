@@ -6,6 +6,7 @@
 * 获取当前运行环境
 * @return {Object} {isDev, isTrunk, isTest, isProduction}
 */
+const ua = window?.navigator?.userAgent;
 export function getEnv() {
     let { location } = window;
     let [first, second] = location.hostname.split('.');
@@ -48,22 +49,22 @@ export const serializeError = (err = {}) => {
 /**
 * 获取url后的参数
 */
-export const getSearchQueryParams = () => {
-    let url = window.location.search;
+export function getQuerySearch() {
+    let url = window.location.search.replace(/(lt|gt|nbsp|amp|quot);/ig, '');
     let theRequest = {};
     if (url.indexOf('?') != -1) {
-        let str = url.substr(1);
-        let strs = str.split('&');
-        for (let i = 0; i < strs.length; i++) {
-            const [name, value = ''] = strs[i].split('=');
-            theRequest[name] = unescape(value);
+        let str = url.substring(1);
+        let strArr = str.split('&');
+        for (let i = 0; i < strArr.length; i++) {
+            const [name, value = ''] = strArr[i].split('=');
+            theRequest[name] = decodeURI(value);
         }
     }
     if (theRequest == undefined || theRequest == null) {
         theRequest == '';
     }
     return theRequest;
-};
+}
 
 // 组装query参数
 export const getSearchQueryStr = (queryObj) => {
@@ -122,11 +123,15 @@ export const numberInputLimit = (e) => {
 
 // 判断浏览器函数
 export function getIsMobile() {
-    if (window.navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) {
+    if (ua.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)) {
         return true; // 移动端
     }
     return false; // PC端
 }
+export const isAndroid = ua.indexOf('Android') > -1 || ua.indexOf('Adr') > -1; // android终端
+export const isiOS = /(iPhone|iPad|iPod|iOS)/i.test(ua); // ios终端
+export const isiPad = /(iPad|iPod)/i.test(ua); // iPad终端
+export const isMac = /macintosh|mac os x/i.test(ua); // Mac
 
 /**
  *  获取域名env标示
@@ -137,8 +142,23 @@ export function getHostEnv() {
     let [first, second] = window.location.hostname.split('.');
     if (first.endsWith('test')) {
         env = 'test';
-    } else if (tests.includes(second)) {
-        env = `.${second}`;
+    } else if (tests.includes(second) || first === 'localhost') {
+        env = first === 'localhost' ? '.neibu' : `.${second}`;
     }
     return env;
+}
+
+// 获取系统
+export function getSystemType() {
+    let agent = ua.toLowerCase();
+    if (agent.indexOf('win32') >= 0 || agent.indexOf('wow32') >= 0) {
+        return 'windows';
+    }
+    if (agent.indexOf('win64') >= 0 || agent.indexOf('wow64') >= 0) {
+        return 'windows';
+    }
+    if (isMac) {
+        return 'macos';
+    }
+    return undefined;
 }
