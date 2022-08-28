@@ -17,7 +17,7 @@
         [
             "@babel/plugin-transform-runtime", // 处理es6，es7新特性，如：Map、Set、Array.includes() 等
             {
-                "corejs": 3, // polyfill 需要使用@babel/runtime-corejs2
+                "corejs": 3, // core-js/stable 需要使用@babel/runtime-corejs3
                 "useBuildIns": "usage", // 按需引入,即使用什么新特性打包什么新特性, 可以减小打包的体积
                 "proposals": true // 支持原型上的新特性，如:[].includes()
             }
