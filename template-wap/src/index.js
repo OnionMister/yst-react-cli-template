@@ -1,3 +1,4 @@
+import 'core-js/stable';
 import React from 'react';
 import 'antd-mobile/es/global';
 import { createRoot } from 'react-dom/client';
